@@ -1,4 +1,4 @@
-# Google Data Analytics Project Case Study 1 : Cyclistic 
+# Google Data Analytics Project : Cyclistic 
 bike-share　
 
 
