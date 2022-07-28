@@ -1,7 +1,8 @@
 # Google Data Analytics Project:Cyclistic bike-share　
 
+*This project is a capstone project of Google Data Analytics Professional Certificate on cousera.
+
 ## Summary
-This project is a part of Google Data Analytics Professional Certificate on cousera.
 I am a junior data analyst working in the marketing analyst team at Cyclistic, a fictional bike-share company in Chicago. 
 Until now, Cyclistic’s marketing strategy relied on building general awareness and appealing to broad consumer segments. 
 The director of marketing Lily Moreno believes the company’s future success depends on maximizing the number of annual memberships. 
