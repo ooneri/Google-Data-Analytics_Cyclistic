@@ -1,4 +1,4 @@
-# Google Data Analytics Project : Cyclistic　bike-share　
+# Google Data Analytics Project:Cyclistic bike-share　
 
 ## Project Summary
 This project is a part of Google Data Analytics Professional Certificate on cousera.
