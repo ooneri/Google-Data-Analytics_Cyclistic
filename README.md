@@ -21,5 +21,6 @@ Therefore, the business task is to analyze the company's historical bike-trip da
 3. How can Cyclistic use digital media to influence casual riders to become members?
 
 ## PREPARE    
+Data:06.2021 - 05.2022 was downloaded from [here](https://divvy-tripdata.s3.amazonaws.com/index.html) under this [license](https://ride.divvybikes.com/data-license-agreement). Riders’ personally identifiable information is not included.
 
-
+## PROCESS
