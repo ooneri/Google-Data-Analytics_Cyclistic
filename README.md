@@ -24,3 +24,9 @@ Therefore, the business task is to analyze the company's historical bike-trip da
 Data:06.2021 - 05.2022 was downloaded from [here](https://divvy-tripdata.s3.amazonaws.com/index.html) under this [license](https://ride.divvybikes.com/data-license-agreement). Riders’ personally identifiable information is not included.
 
 ## PROCESS
+Data cleaning process: 
+1. I created the column “ride_length” and the length of each ride which was calculated by subtracting　“started_at” from “ended_at” and then formatted as HH:MM:SS. 
+2. I created the column “day_of_week” as the day of the week that the ride started.   
+3. I separeted the columns “started_at” and “ended_at” to date & time each.
+
+## ANALYZE
