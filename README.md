@@ -25,8 +25,8 @@ Data:06.2021 - 05.2022 was downloaded from [here](https://divvy-tripdata.s3.amaz
 
 ## PROCESS
 Data cleaning process: 
-1. I created the column “ride_length” and the length of each ride which was calculated by subtracting　“started_at” from “ended_at” and then formatted as HH:MM:SS. 
+1. I created the column “ride_length” and the length of each ride which was calculated by subtracting　“started_at” from “ended_at” and then formatted as hours. 
 2. I created the column “day_of_week” as the day of the week that the ride started.   
-3. I separeted the columns “started_at” and “ended_at” to date & time each.
+
 
 ## ANALYZE
