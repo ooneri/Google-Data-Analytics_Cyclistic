@@ -74,5 +74,14 @@ GROUP BY day_of_week
 
 
 
-# ===== STEP =====
-# STEP4で作成したtableから、5am-10am、4pm-7pmのride数をmember casual別に抽出
+# ===== STEP6 =====
+# bikeの種類別のride数をカウント
+
+
+SELECT
+  COUNTIF(member_casual = 'member') AS member,
+  COUNTIF(member_casual = 'casual') AS casual
+FROM `sturdy-pier-354508.Cousera_Cyclistic.cyclistic_062021_052022` 
+GROUP BY rideable_type 
+
+
