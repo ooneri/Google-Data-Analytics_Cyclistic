@@ -1,12 +1,12 @@
 # ===== STEP1 ======
 # ride_length 0以上の　member / casualそれぞれのride_idをカウント
 
-
 SELECT 
   COUNT (ride_id) 
 FROM tripdata
 WHERE ride_length_h >= 0
 GROUP BY member_casual
+
 
 
 # ===== STEP2 ======
@@ -23,18 +23,56 @@ WHERE ride_length_h > 0
 GROUP BY member_casual
 
 
+
 # ===== STEP3 =====
 # ride_length 0以上の　member / casualそれぞれの曜日別ride数をカウント
 
 SELECT
   COUNTIF(member_casual = 'casual') AS casual,
-   COUNTIF(member_casual = 'member') AS member,
+  COUNTIF(member_casual = 'member') AS member,
 FROM
-`sturdy-pier-354508.Cousera_Cyclistic.cyclistic_062021_052022`
+tripdata
 WHERE ride_length_h > 0
 GROUP BY day_of_week
 
 
-# ===== STEP4 =====
-# ride_length 0以上の　member / casualそれぞれの曜日別ride数をカウント
 
+# ===== STEP4 =====
+# STEP3にて、casualに比べてmemberは平日の乗車数が多いことが判明。通勤、通学での利用と仮説。
+朝、夕方の時間帯別ride数を算出するために、以下のSELECT内カラムの情報のみを別tableへ保存
+
+SELECT
+　　member_casual,
+　　day_of_week,
+　　ride_length_h,
+TIME(started_at) AS started_time
+FROM
+tripdata
+WHERE ride_length_h > 0
+
+
+
+# ===== STEP5 =====
+# STEP4で作成したtableから、5am-10am、4pm-7pmのride数をmember casual別に抽出
+
+SELECT 
+  COUNTIF(member_casual = 'member') AS member,
+  COUNTIF(member_casual = 'casual') AS casual
+FROM tripdata
+WHERE
+started_time BETWEEN "05:00:00" AND "10:00:00"
+GROUP BY day_of_week
+
+
+SELECT 
+  COUNTIF(member_casual = 'member') AS member,
+  COUNTIF(member_casual = 'casual') AS casual
+FROM tripdata
+WHERE
+started_time BETWEEN "16:00:00" AND "19:00:00"
+GROUP BY day_of_week
+
+
+
+# ===== STEP =====
+# STEP4で作成したtableから、5am-10am、4pm-7pmのride数をmember casual別に抽出
