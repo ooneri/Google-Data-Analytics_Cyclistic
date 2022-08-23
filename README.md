@@ -8,8 +8,8 @@ Until now, Cyclistic’s marketing strategy relied on building general awareness
 The director of marketing Lily Moreno believes the company’s future success depends on maximizing the number of annual memberships. 
 Therefore,my team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights,
 my team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives
-must approve your recommendations, so they must be backed up with compelling data insights and professional data
-visualizations.
+must approve our team's recommendations, so they must be backed up with compelling data insights and professional data
+visualizations. 
 
 ## ASK
 The director of marketing, Lily Moreno believes that maximizing the number of annual members will be key to future growth rather than creating a marketing campaign that targets all-new customers. She has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members. 
