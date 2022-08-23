@@ -1,0 +1,39 @@
+# ===== STEP1 ======
+# ride_length 0以上の　member / casualそれぞれのride_idをカウント
+
+
+SELECT 
+  COUNT (ride_id) 
+FROM tripdata
+WHERE ride_length_h >= 0
+GROUP BY member_casual
+
+
+# ===== STEP2 ======
+# ride_length 0以上の　member / casualそれぞれの、平均、最大、最小、TOP3最多ride_lengthをカウント
+
+SELECT
+  AVG(ride_length_h),
+  MAX(ride_length_h),
+  MIN(ride_length_h),
+  APPROX_TOP_COUNT(ride_length_h,3)
+FROM
+tripdata
+WHERE ride_length_h > 0
+GROUP BY member_casual
+
+
+# ===== STEP3 =====
+# ride_length 0以上の　member / casualそれぞれの曜日別ride数をカウント
+
+SELECT
+  COUNTIF(member_casual = 'casual') AS casual,
+   COUNTIF(member_casual = 'member') AS member,
+FROM
+`sturdy-pier-354508.Cousera_Cyclistic.cyclistic_062021_052022`
+WHERE ride_length_h > 0
+GROUP BY day_of_week
+
+# ===== STEP4 =====
+# ride_length 0以上の　member / casualそれぞれの曜日別ride数をカウント
+
