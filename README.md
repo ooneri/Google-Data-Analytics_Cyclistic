@@ -28,6 +28,6 @@ Data cleaning process:
 1. Deleted `start_lat`	`start_lng`	`end_lat`	`end_lng`from each csv file.
 2. Created the column `ride_length` which was calculated by subtracting　`started_at` from `ended_at` and then formatted as hours. 
 3. Created the column `day_of_week` as the day of the week that the ride started.   
-4. Combined 12 month data into one single table.
+4. Combined 12 month data into one single table using BigQuery.
 
 ## ANALYZE
