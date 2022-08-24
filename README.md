@@ -31,4 +31,19 @@ Data cleaning process:
 4. Combined 12 month data into one single table using BigQuery.
 
 ## ANALYZE
-You can find my analysis process from [here]()
+You can find a whole analysis process from [here](https://github.com/ooneri/Google-Data-Analytics_Cyclistic/blob/main/Analyze.sql)
+
+Key Findings: 
+- Casual users’ average ride is more than 10 minutes longer than members
+- Casual users ride on weekends and holiday seasons, especially in summer
+- Members ride more in the morning and evening on weekdays.
+
+## SHARE
+
+
+You will find a presentation from [here](https://docs.google.com/presentation/d/1GDMy8ohbnWCLAIxgxZ-mgp6IN6YnT62TezRtIEA3BeI/edit?usp=sharing)
+
+Recommendations:
+- Offer special deals of converting membership targeted to casual riders who ride in the morning or evening on the weekdays
+- Offer a weekend membership plan to casual users already use on the weekends
+- Place a digital ad to promote holiday season membership plans
