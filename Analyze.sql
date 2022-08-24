@@ -39,9 +39,9 @@ GROUP BY day_of_week
 
 
 # ===== STEP4 =====
-# I found that casual riders are less than members on weekdays.
-#　I can expect that office workers ride bikes for commuting.
-#　Thus I extracted only time data from timestamp and saved it with some necessary colums in a temporary table as following. 
+# I found that casual riders are less than members on weekdays　on STEP3.
+#　I expected that office workers ride bikes for commuting.
+#　Thus I extracted only time data from timestamp and saved it with some necessary columns in a temporary table. 
 
 SELECT
 　　member_casual,
