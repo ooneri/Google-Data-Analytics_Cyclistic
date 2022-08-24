@@ -1,16 +1,17 @@
 # ===== STEP1 ======
-# ride_length 0以上の　member / casualそれぞれのride_idをカウント
+# Count number of ride_id by casual vs member when ride_length_h > 0 
 
 SELECT 
   COUNT (ride_id) 
 FROM tripdata
-WHERE ride_length_h >= 0
+WHERE ride_length_h > 0
 GROUP BY member_casual
 
 
 
 # ===== STEP2 ======
-# ride_length 0以上の　member / casualそれぞれの、平均、最大、最小、TOP3最多ride_lengthをカウント
+# Count top3 ride length and each number of rides. 
+Besides, avg, max and min ride lengths. 
 
 SELECT
   AVG(ride_length_h),
@@ -25,7 +26,7 @@ GROUP BY member_casual
 
 
 # ===== STEP3 =====
-# ride_length 0以上の　member / casualそれぞれの曜日別ride数をカウント
+# Count number of rides by day of the week.
 
 SELECT
   COUNTIF(member_casual = 'casual') AS casual,
@@ -38,8 +39,9 @@ GROUP BY day_of_week
 
 
 # ===== STEP4 =====
-# STEP3にて、casualに比べてmemberは平日の乗車数が多いことが判明。通勤、通学での利用と仮説。
-朝、夕方の時間帯別ride数を算出するために、以下のSELECT内カラムの情報のみを別tableへ保存
+# I found that casual riders are less than members on weekdays.
+I can expect that office workers ride bikes for commuting.
+Thus I extracted only time data from timestamp and saved it with some necessary colums in a temporary table as following. 
 
 SELECT
 　　member_casual,
@@ -51,9 +53,8 @@ tripdata
 WHERE ride_length_h > 0
 
 
-
 # ===== STEP5 =====
-# STEP4で作成したtableから、5am-10am、4pm-7pmのride数をmember casual別に抽出
+# Count each number of rides both between 5am-10am and 4pm-7pm by member vs casual.
 
 SELECT 
   COUNTIF(member_casual = 'member') AS member,
@@ -75,13 +76,23 @@ GROUP BY day_of_week
 
 
 # ===== STEP6 =====
-# bikeの種類別のride数をカウント
+# count number of rides per each type of bike. 
 
 
 SELECT
   COUNTIF(member_casual = 'member') AS member,
   COUNTIF(member_casual = 'casual') AS casual
-FROM `sturdy-pier-354508.Cousera_Cyclistic.cyclistic_062021_052022` 
+FROM tripdata
 GROUP BY rideable_type 
 
 
+
+# ===== STEP7 ======
+# Count monthly member vs casual riders from monthly table I created in prior.
+
+SELECT 
+  COUNTIF ( member_casual = 'casual') AS casual,
+  COUNTIF ( member_casual = 'member') AS member,
+FROM monthly-trip-data
+WHERE ride_length_h > 0
+GROUP BY MONTH
