@@ -11,7 +11,7 @@ GROUP BY member_casual
 
 # ===== STEP2 ======
 # Count top3 ride length and each number of rides. 
-Besides, avg, max and min ride lengths. 
+# Besides, calcurated avg, max and min ride lengths. 
 
 SELECT
   AVG(ride_length_h),
