@@ -40,6 +40,7 @@ Key Findings:
 
 ## SHARE
 
+<img width="852" alt="スクリーンショット 2022-08-24 22 47 49" src="https://user-images.githubusercontent.com/27768556/186606198-8ecb92c7-37cd-4bec-bc6d-91d49cc085d4.png">
 
 You will find a presentation from [here](https://docs.google.com/presentation/d/1GDMy8ohbnWCLAIxgxZ-mgp6IN6YnT62TezRtIEA3BeI/edit?usp=sharing)
 
