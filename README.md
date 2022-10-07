@@ -15,23 +15,98 @@ A bike-share program that features more than 5,800 bicycles and 600 docking stat
 **Cyclistic executive team** - The notoriously detail-oriented executive team will decide whether to approve the recommended marketing program.
 
 ### The business task
-The goal Lily has set is to design marketing strategies aimed at converting casual riders into annual members.<br><br>
+The goal Lily has set is to design marketing strategies aimed at converting casual riders into annual members.<br>
 
-With considering Lily's goal and the key stakeholders,the business task is to analyze the company's historical bike-trip data and identify differences/trends between casual riders and annual members with answering three questions below for guiding the future marketing program.<br><br>
+With considering Lily's goal and the key stakeholders,the business task is to analyze the company's historical bike-trip data and identify differences/trends between casual riders and annual members with answering three questions below for guiding the future marketing program.<br>
 
 * How do annual members and casual riders use Cyclistic bikes differently?
 * Why would casual riders buy Cyclistic annual memberships?
 * How can Cyclistic use digital media to influence casual riders to become members?
 
-## PREPARE    
-Data:06.2021 - 05.2022 was downloaded from [here](https://divvy-tripdata.s3.amazonaws.com/index.html) under this [license](https://ride.divvybikes.com/data-license-agreement). Riders’ personally identifiable information is not included.
+## PREPARE
+**1. Data credibility**<br>
+I used the public data provided by divvy from [here](https://divvy-tripdata.s3.amazonaws.com/index.html) under this [license](https://ride.divvybikes.com/data-license-agreement). <br>
+The data period: 06.2021 - 05.2022<br>
+*Riders’ personally identifiable information is not included.<br>
+
+**2. Data organization**<br>
+The original data is consisted by the following columns.<br>
+
+`ride_id` — ride id<br>
+`ridable_type` — bike type<br>
+`started_at` — timestamp of the trip started at<br>
+`ended_at` — timestamp of the trip ended at<br>
+`start_station_name` — the name of the station the trip started from<br>
+`start_station_id` — station id the trip started from<br>
+`end_station_name` — the name of the station the trip ended<br>
+`end_station_id` — station id the trip ended<br>
+`start_lat` — latitude of start point<br>
+`start_lng` — longitude of start point<br>
+`end_lat` — latitude of end point<br>
+`end_lng` — longitude of end point<br>
+`member_casual` — member type ( annual member or casual rider )<br>
+
+
+**3. The sample size**<br>
+The sample size is enough for my analysis. it has 5860776 ride_ids.  
+
+```SELECT 
+COUNT(ride_id) 
+FROM `sturdy-pier-354508.Cousera_Cyclistic.cyclistic_062021_052022` 
+```
 
 ## PROCESS
-Data cleaning process: 
-1. Deleted `start_lat`	`start_lng`	`end_lat`	`end_lng`from each csv file.
-2. Created the column `ride_length` which was calculated by subtracting　`started_at` from `ended_at` and then formatted as hours. 
-3. Created the column `day_of_week` as the day of the week that the ride started.   
-4. Combined 12 month data into one single table using BigQuery.
+**1. Clean the data**
+I primarily used Excel for the following 3 steps of cleaning process as it is the easiest tool to glimse, filter and sort the data. And then, Combined all the data into one single table using BigQuery(SQL).
+
+* For this analysis, I do not use lat/lng.Therefore, the columns`start_lat`,`start_lng`,`end_lat`,`end_lng` were deleted from each monthly csv file
+* Added a new column `ride_length` which was calculated by subtracting　`started_at` from ended_at and then formatted as hours using excel
+* Added a new column `day_of_week` as the day of the week that the ride started
+* Combined separated csv files into one single table
+
+```
+# repeated the same syntax for 12 times as the table was separated by month
+SELECT *
+FROM `sturdy-pier-354508.Cousera_Cyclistic.cyclistic_062021` 
+UNION ALL
+```
+**2. Check the data for errors**
+* Removed null data
+* Changed some column names
+* Extracted the data where the ride_length_h is > 0
+
+The number ofride_id is 5860776 when it INCLUDES the invalid data, 4662347 when it EXCLUDES the invalid data.<br>
+About 20% was dropped after the invalid(ride_length is NOT more than 0, null data) data was removed.
+
+```
+# Remove null data
+# Change some column names
+# Remain the data where the ride_length_h is > 0 
+
+SELECT 
+  ride_id,
+  member_casual AS user_type,
+  rideable_type AS bike_type,
+  started_at,
+  ended_at,
+  start_station_name,
+  start_station_id,
+  end_station_name,
+  end_station_id,
+  ride_length_h,
+  day_of_week
+FROM `sturdy-pier-354508.Cousera_Cyclistic.cyclistic_062021_052022` 
+WHERE
+ ride_length_h > 0
+ AND
+ start_station_name IS NOT NULL
+ AND
+ start_station_id IS NOT NULL
+ AND 
+ end_station_name IS NOT NULL
+ AND
+ end_station_id IS NOT NULL
+ ```
 
 ## ANALYZE
 You can find a whole analysis process from [here](https://github.com/ooneri/Google-Data-Analytics_Cyclistic/blob/main/Analyze.sql)
